@@ -13,19 +13,16 @@ class MyApp extends StatelessWidget { //메인 페이지
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('앱임'),backgroundColor: Colors.blue),
-        body: Text('안녕'),
-        bottomNavigationBar:BottomAppBar(
-          child: SizedBox(
-            height: 100,
-            child:Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.call),
-                  Icon(Icons.message),
-                  Icon(Icons.contact_page)
-                ]
-            )
-          ,)
+        body: Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            width: double.infinity,height: 50,
+            margin: EdgeInsets.fromLTRB(1, 2, 3, 4),
+            decoration: BoxDecoration(
+              color:Colors.yellow,
+              border: Border.all(color: Colors.black),
+            ),
+          ),
         ),
       )
     );
