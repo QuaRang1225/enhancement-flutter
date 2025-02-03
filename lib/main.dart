@@ -11,8 +11,22 @@ class MyApp extends StatelessWidget { //메인 페이지
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      home: Center(
-        child: Container(width: 50,height: 50,color: Colors.blue),
+      home: Scaffold(
+        appBar: AppBar(title: Text('앱임'),backgroundColor: Colors.blue),
+        body: Text('안녕'),
+        bottomNavigationBar:BottomAppBar(
+          child: SizedBox(
+            height: 100,
+            child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.call),
+                  Icon(Icons.message),
+                  Icon(Icons.contact_page)
+                ]
+            )
+          ,)
+        ),
       )
     );
   }
