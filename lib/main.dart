@@ -3,6 +3,7 @@ import 'carrot.dart';
 import 'flexible.dart';
 import 'List.dart';
 import 'GridView.dart';
+import 'Alert.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Gridviews() // 분리한 파일을 사용
+      home: Alert() // 분리한 파일을 사용
     );
   }
 }
