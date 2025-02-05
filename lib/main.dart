@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/navigation.dart';
 import 'carrot.dart';
 import 'flexible.dart';
 import 'List.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Alert() // 분리한 파일을 사용
+      home: NavigationTestView() // 분리한 파일을 사용
     );
   }
 }
