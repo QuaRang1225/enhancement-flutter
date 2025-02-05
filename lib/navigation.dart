@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class NavigationTestView extends StatelessWidget {
   const NavigationTestView({super.key});
@@ -34,7 +35,12 @@ class NavigationTestView extends StatelessWidget {
 }
 
 class SecondView extends StatelessWidget {
-  const SecondView({super.key});
+  static String link = '5ZgXPy6cKmA';
+  final YoutubePlayerController con = YoutubePlayerController(
+    initialVideoId:link,
+    flags:const YoutubePlayerFlags(autoPlay:false));
+
+  SecondView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +52,11 @@ class SecondView extends StatelessWidget {
             icon: Icon(Icons.chevron_left)
         ),
       ),
+      body: YoutubePlayer(
+          controller: con
+      )
     );
   }
 }
+
+
