@@ -18,28 +18,54 @@ class JsonView extends StatelessWidget {
         appBar: AppBar(
           title: Text("포켓몬 정보"),
         ),
-        body: FutureBuilder(
-            future: pokemonInfo,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.separated(
-                    itemCount:
-                        snapshot.data["data"]["text_entries"]["text"].length,
-                    separatorBuilder: (_, __) => Divider(),
-                    itemBuilder: (_, index) {
-                      return Text(
-                          "${snapshot.data["data"]["text_entries"]["text"][index]}");
-                    });
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text("${snapshot.error}"),
-                );
-              } else {
-                return Center(
-                    child: CircularProgressIndicator(
-                  strokeWidth: 100,
-                ));
-              }
-            }));
+        body: Container(
+          margin: EdgeInsets.all(10),
+          child: FutureBuilder(
+              future: pokemonInfo,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount:
+                          snapshot.data["data"]["text_entries"]["text"].length,
+                      itemBuilder: (_, index) {
+                        return Row(
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 70,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.2), // 배경색
+                                borderRadius: BorderRadius.circular(10), // 모서리 둥글게
+                              ),
+                              margin: EdgeInsets.all(5),
+                              child: Text(
+                                "${snapshot.data["data"]["text_entries"]["version"][index]}",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.all(5),
+                              child: Text(
+                                "${snapshot.data["data"]["text_entries"]["text"][index]}",
+                                maxLines: 3,
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text("${snapshot.error}"),
+                  );
+                } else {
+                  return Center(
+                      child: CircularProgressIndicator(
+                    strokeWidth: 5,
+                  ));
+                }
+              }),
+        )
+    );
   }
 }
