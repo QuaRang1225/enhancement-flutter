@@ -11,27 +11,7 @@ class Alert extends StatelessWidget {
           showDialog(
               context: context,
               builder: (BuildContext con){
-                return AlertDialog(
-                  title: Text("Hello"),
-                  content: Text("My name is.."),
-                  actions: [
-                    TextButton(
-                      onPressed: ()=>print("hero"),
-                      child: Text("hero")
-                    ),
-                    TextButton(
-                      onPressed: ()=>print("quarang"),
-                      child: Text("quarang")
-                    ),
-                    TextButton(
-                      onPressed: (){
-                        print("close");
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("close")
-                    )
-                  ],
-                );
+                return alert(context);
               }
           );
         },
@@ -44,6 +24,29 @@ class Alert extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+  AlertDialog alert(BuildContext context){
+    return AlertDialog(
+      title: Text("Hello"),
+      content: Text("My name is.."),
+      actions: [
+        TextButton(
+            onPressed: ()=>print("hero"),
+            child: Text("hero")
+        ),
+        TextButton(
+            onPressed: ()=>print("quarang"),
+            child: Text("quarang")
+        ),
+        TextButton(
+            onPressed: (){
+              print("close");
+              Navigator.of(context).pop();
+            },
+            child: Text("close")
+        )
+      ],
     );
   }
 }
