@@ -52,19 +52,19 @@ class JsonViewState extends State<JsonView> {
       appBar: AppBar(
         title: Text("포켓몬 정보"),
       ),
-      body: Container(
-        margin: EdgeInsets.all(10),
-        child: FutureBuilder(
-          future: pokemonInfo,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: snapshot.data["data"]["text_entries"]["text"].length,
-                      itemBuilder: (_, index) {
-                        return Row(
+      body: FutureBuilder(
+        future: pokemonInfo,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.all(10),
+                    itemCount: snapshot.data["data"]["text_entries"]["text"].length,
+                    itemBuilder: (_, index) {
+                      return Container(
+                        child: Row(
                           children: [
                             Container(
                               width: 100,
@@ -99,68 +99,68 @@ class JsonViewState extends State<JsonView> {
                               child: Text("저장"),
                             ),
                           ],
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: getData,
-                    child: Text("불러오기"),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        Row(children: [
-                          Container(
-                            width:100,
-                            alignment: Alignment.center,
-                            child: Text("저장버전",style: TextStyle(fontWeight: FontWeight.bold),)
-                          ),
-                          Expanded(
-                              child: Center(child: Text("저장 텍스트")),
-                          )
-                        ],
                         ),
-                        Row(
-                          children: [
-                          Container(
-                              width: 100,
-                              height: 70,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius:BorderRadius.circular(10),
-                                color: Colors.grey.withOpacity(0.2),
-                              ),
-                              child: Text(entryVersion)
-                          ),
-                          Expanded(
-                            child: Container(
-                                padding: EdgeInsets.only(left: 10),
-                                height: 100,
-                                alignment: Alignment.centerLeft,
-                                child: Text(entryTitle)
-                            )
-                          )
-                        ],
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: getData,
+                  child: Text("불러오기"),
+                ),
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      Row(children: [
+                        Container(
+                          width:100,
+                          alignment: Alignment.center,
+                          child: Text("저장버전",style: TextStyle(fontWeight: FontWeight.bold),)
                         ),
+                        Expanded(
+                            child: Center(child: Text("저장 텍스트")),
+                        )
                       ],
-                    ),
-                  )
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text("${snapshot.error}"),
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(strokeWidth: 5),
-              );
-            }
-          },
-        ),
+                      ),
+                      Row(
+                        children: [
+                        Container(
+                            width: 100,
+                            height: 70,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius:BorderRadius.circular(10),
+                              color: Colors.grey.withOpacity(0.2),
+                            ),
+                            child: Text(entryVersion)
+                        ),
+                        Expanded(
+                          child: Container(
+                              padding: EdgeInsets.only(left: 10),
+                              height: 100,
+                              alignment: Alignment.centerLeft,
+                              child: Text(entryTitle)
+                          )
+                        )
+                      ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("${snapshot.error}"),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(strokeWidth: 5),
+            );
+          }
+        },
       ),
     );
   }
